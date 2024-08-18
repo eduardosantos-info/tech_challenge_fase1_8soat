@@ -28,6 +28,11 @@ public class PedidoUseCase : IPedidoUseCase
         _pedidoRepository.Adicionar(pedido);
     }
 
+    public void ExcluirPedido(int id)
+    {
+        _pedidoRepository.Excluir(id);
+    }
+
     public Pedido ObterPorId(int id)
     {
         return _pedidoRepository.ObterPorId(id);
@@ -36,5 +41,10 @@ public class PedidoUseCase : IPedidoUseCase
     public List<Pedido> ObterTodos()
     {
         return _pedidoRepository.ObterTodos();
+    }
+
+    public List<Pedido> ObterPorStatus(StatusPedido status)
+    {
+        return _pedidoRepository.ObterPorStatus(status);
     }
 }

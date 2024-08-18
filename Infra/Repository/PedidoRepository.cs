@@ -22,9 +22,20 @@ public class PedidoRepository : IPedidoRepository
         }
     }
 
+    public void Excluir(int id)
+    {
+        var pedido = ObterPorId(id);
+        _pedidos.Remove(pedido);
+    }
+
     public Pedido ObterPorId(int id)
     {
         return _pedidos.Single(c => c.Id == id);
+    }
+
+    public List<Pedido> ObterPorStatus(StatusPedido status)
+    {
+        return _pedidos.Where(c => c.Status == status).ToList();
     }
 
     public List<Pedido> ObterTodos()

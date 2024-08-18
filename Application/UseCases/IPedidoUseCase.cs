@@ -8,4 +8,6 @@ public interface IPedidoUseCase
     void AtualizarStatusPedido(int id, StatusPedido novoStatus);
     Pedido ObterPorId(int id);
     List<Pedido> ObterTodos();
+    void ExcluirPedido(int id);
+    List<Pedido> ObterPorStatus(StatusPedido status);
 }

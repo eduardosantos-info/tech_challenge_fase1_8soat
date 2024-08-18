@@ -6,11 +6,11 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PedidosController : ControllerBase
+    public class PedidoController : ControllerBase
     {
         private readonly IPedidoUseCase _pedidoUseCase;
 
-        public PedidosController(IPedidoUseCase pedidoUseCase)
+        public PedidoController(IPedidoUseCase pedidoUseCase)
         {
             _pedidoUseCase = pedidoUseCase;
         }
@@ -42,6 +42,32 @@ namespace API.Controllers
         {
             var pedidos = _pedidoUseCase.ObterTodos();
             return Ok(pedidos);
+        }
+
+        [HttpGet("{status}")]
+        public IActionResult ObterPedidos([FromBody] StatusPedido status)
+        {
+            var pedidos = _pedidoUseCase.ObterPorStatus(status);
+            return Ok(pedidos);
+        }
+
+        [HttpGet]
+        public IActionResult ObterFilaPedidos()
+        {
+            var pedidos = _pedidoUseCase.ObterPorStatus(StatusPedido.Recebido);
+            pedidos.AddRange(_pedidoUseCase.ObterPorStatus(StatusPedido.EmPreparacao));
+            pedidos.AddRange(_pedidoUseCase.ObterPorStatus(StatusPedido.Pronto));
+
+            if (pedidos == null || pedidos.Count == 0) return NotFound();
+
+            return Ok(pedidos);
+        }
+
+        [HttpDelete]
+        public IActionResult ExcluirPedido([FromBody] int id)
+        {
+            _pedidoUseCase.ExcluirPedido(id);
+            return Ok();
         }
     }
 }
