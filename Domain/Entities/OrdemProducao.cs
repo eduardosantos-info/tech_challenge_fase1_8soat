@@ -8,7 +8,7 @@ namespace Domain.Entities
 {
     public class OrdemProducao
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public Pedido Pedido { get; set; }
         public StatusProducao StatusProducao { get; set; }
         public RelacaoProducao RelacaoProducao { get;set;}

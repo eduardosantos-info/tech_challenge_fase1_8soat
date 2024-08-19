@@ -1,45 +1,59 @@
 ﻿using Application.Repository;
 using Domain.Entities;
+using Infra.Context;
 
 namespace Infra.Repository;
 
 public class ClienteRepository : IClienteRepository
 {
-    private readonly List<Cliente> _cliente = new List<Cliente>();
+    private readonly FastFoodDbContext _context;
+
+    public ClienteRepository(FastFoodDbContext context)
+    {
+        _context = context;
+    }
+
     public void Adicionar(Cliente cliente)
     {
-        cliente.Id = _cliente.Count + 1;
-        _cliente.Add(cliente);
+        try
+        {
+            _context.Clientes.Add(cliente);
+            _context.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
     }
 
     public void Atualizar(Cliente cliente)
     {
-        var clienteExistente = ObterPorId(cliente.Id);
-        if (clienteExistente != null)
+        var clienteAtual = ObterPorId(cliente.Id);
+        if (clienteAtual != null)
         {
-            _cliente.Remove(clienteExistente);
-            _cliente.Add(cliente);
+            _context.Clientes.Remove(clienteAtual);
+            _context.Clientes.Add(cliente);
         }
     }
 
-    public void Excluir(int id)
+    public void Excluir(Guid id)
     {
         var cliente = ObterPorId(id);
-        _cliente.Remove(cliente);
+        _context.Clientes.Remove(cliente);
     }
 
     public Cliente ObterPorCpf(string cpf)
     {
-        return _cliente.Single(c => c.Cpf == cpf);
+        return _context.Clientes.Single(c => c.Cpf == cpf);
     }
 
-    public Cliente ObterPorId(int id)
+    public Cliente ObterPorId(Guid id)
     {
-        return _cliente.Single(c => c.Id == id);
+        return _context.Clientes.Single(c => c.Id == id);
     }
 
     public List<Cliente> ObterTodos()
     {
-        return _cliente;
+        return _context.Clientes.ToList();
     }
 }

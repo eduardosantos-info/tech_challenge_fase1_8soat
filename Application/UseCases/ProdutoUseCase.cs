@@ -23,7 +23,7 @@ public class ProdutoUseCase : IProdutoUseCase
         _produtoRepository.Adicionar(produto);
     }
 
-    public void ExcluirProduto(int id)
+    public void ExcluirProduto(Guid id)
     {
         _produtoRepository.Excluir(id);
     }
@@ -33,7 +33,7 @@ public class ProdutoUseCase : IProdutoUseCase
         return _produtoRepository.ObterPorCategoria(categoria);
     }
 
-    public Produto ObterPorId(int id)
+    public Produto ObterPorId(Guid id)
     {
         return _produtoRepository.ObterPorId(id);
     }
