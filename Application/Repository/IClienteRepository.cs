@@ -4,10 +4,10 @@ namespace Application.Repository;
 
 public interface IClienteRepository
 {
-    Cliente ObterPorId(int id);
+    Cliente ObterPorId(Guid id);
     void Adicionar(Cliente cliente);
     void Atualizar(Cliente cliente);
-    void Excluir(int id);
+    void Excluir(Guid id);
     List<Cliente> ObterTodos();
     Cliente ObterPorCpf(string cpf);
 }

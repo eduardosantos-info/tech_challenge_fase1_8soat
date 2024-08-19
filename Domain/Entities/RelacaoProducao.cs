@@ -2,7 +2,7 @@
 
 public class RelacaoProducao
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public Produto Produto { get; set; }
     public List<Ingrediente> Ingredientes { get; set; }
 }

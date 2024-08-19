@@ -30,7 +30,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult ObterProduto(int id)
+        public IActionResult ObterProduto(Guid id)
         {
             var produto = _produtoUseCase.ObterPorId(id);
             if (produto == null) return NotFound();
@@ -45,7 +45,7 @@ namespace API.Controllers
         }
         
         [HttpDelete("{id}")]
-        public IActionResult ExcluirProduto([FromBody] int id)
+        public IActionResult ExcluirProduto([FromBody] Guid id)
         {
             _produtoUseCase.ExcluirProduto(id);
             return Ok();

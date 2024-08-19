@@ -26,9 +26,9 @@ public class ClienteUseCase : IClienteUseCase
         _clienteRepository.Adicionar(cliente);
     }
 
-    public void ExcluirCliente(int id)
+    public void ExcluirCliente(Guid id)
     {
-        throw new NotImplementedException();
+        _clienteRepository.Excluir(id);
     }
 
     public Cliente ObterPorCpf(string cpf)
@@ -36,7 +36,7 @@ public class ClienteUseCase : IClienteUseCase
         return _clienteRepository.ObterPorCpf(cpf);
     }
 
-    public Cliente ObterPorId(int id)
+    public Cliente ObterPorId(Guid id)
     {
         return _clienteRepository.ObterPorId(id);
     }

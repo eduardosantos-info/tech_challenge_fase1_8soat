@@ -5,9 +5,9 @@ namespace Application.UseCases;
 public interface IPedidoUseCase
 {
     void CriarPedido(Pedido pedido);
-    void AtualizarStatusPedido(int id, StatusPedido novoStatus);
-    Pedido ObterPorId(int id);
+    void AtualizarStatusPedido(Guid id, StatusPedido novoStatus);
+    Pedido ObterPorId(Guid id);
     List<Pedido> ObterTodos();
-    void ExcluirPedido(int id);
+    void ExcluirPedido(Guid id);
     List<Pedido> ObterPorStatus(StatusPedido status);
 }

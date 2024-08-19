@@ -30,7 +30,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult ObterCliente(int id)
+        public IActionResult ObterCliente(Guid id)
         {
             var cliente = _clienteUseCase.ObterPorId(id);
             if (cliente == null) return NotFound();
@@ -53,7 +53,7 @@ namespace API.Controllers
         }
 
         [HttpDelete]
-        public IActionResult ExcluirCliente(int id)
+        public IActionResult ExcluirCliente(Guid id)
         {
             _clienteUseCase.ExcluirCliente(id);
             return Ok();

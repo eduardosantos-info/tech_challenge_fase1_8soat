@@ -8,7 +8,7 @@ public class ProdutoRepository : IProdutoRepository
     private readonly List<Produto> _produtos = new List<Produto>();
     public void Adicionar(Produto produto)
     {
-        produto.Id = _produtos.Count + 1;
+        produto.Id = Guid.NewGuid();
         _produtos.Add(produto);
     }
 
@@ -22,7 +22,7 @@ public class ProdutoRepository : IProdutoRepository
         }
     }
 
-    public void Excluir(int id)
+    public void Excluir(Guid id)
     {
         var produto = ObterPorId(id);
         _produtos.Remove(produto);
@@ -33,7 +33,7 @@ public class ProdutoRepository : IProdutoRepository
         return _produtos.Where(c => c.Categoria == categoria).ToList();
     }
 
-    public Produto ObterPorId(int id)
+    public Produto ObterPorId(Guid id)
     {
         return _produtos.Single(c => c.Id == id);
     }

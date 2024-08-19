@@ -7,7 +7,6 @@ services:
     environment:
       POSTGRES_USER: fastfoodUser
       POSTGRES_PASSWORD: fastfoodPassword
-      POSTGRES_DB: fastfood
     ports:
       - "5432:5432"
     volumes:
@@ -15,3 +14,4 @@ services:
 
 volumes:
   postgres_data:
+      POSTGRES_DB: fastfood

@@ -6,8 +6,8 @@ public interface IClienteUseCase
 {
     void CriarCliente(Cliente cliente);
     void AtualizarCliente(Cliente cliente);
-    Cliente ObterPorId(int id);
-    void ExcluirCliente(int id);
+    Cliente ObterPorId(Guid id);
+    void ExcluirCliente(Guid id);
     List<Cliente> ObterTodos();
     Cliente ObterPorCpf(string cpf);
 }

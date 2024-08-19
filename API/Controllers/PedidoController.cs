@@ -23,25 +23,18 @@ namespace API.Controllers
         }
 
         [HttpPut("{id}/status")]
-        public IActionResult AtualizarStatusPedido(int id, [FromBody] StatusPedido novoStatus)
+        public IActionResult AtualizarStatusPedido(Guid id, [FromBody] StatusPedido novoStatus)
         {
             _pedidoUseCase.AtualizarStatusPedido(id, novoStatus);
             return Ok();
         }
 
         [HttpGet("{id}")]
-        public IActionResult ObterPedido(int id)
+        public IActionResult ObterPedido(Guid id)
         {
             var pedido = _pedidoUseCase.ObterPorId(id);
             if(pedido ==null)return NotFound();
             return Ok(pedido);
-        }
-
-        [HttpGet]
-        public IActionResult ObterTodosPedidos()
-        {
-            var pedidos = _pedidoUseCase.ObterTodos();
-            return Ok(pedidos);
         }
 
         [HttpGet("{status}")]
@@ -64,7 +57,7 @@ namespace API.Controllers
         }
 
         [HttpDelete]
-        public IActionResult ExcluirPedido([FromBody] int id)
+        public IActionResult ExcluirPedido([FromBody] Guid id)
         {
             _pedidoUseCase.ExcluirPedido(id);
             return Ok();
